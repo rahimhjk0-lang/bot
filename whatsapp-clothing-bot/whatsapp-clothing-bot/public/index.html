@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لوحة تحكم البوت — الكتالوج والطلبيات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <h1>لوحة التحكم</h1>
+    <p class="login-sub">دخل كلمة السر باش تدير على الكتالوج والطلبيات</p>
+    <input id="password-input" type="password" placeholder="كلمة السر" />
+    <button id="login-btn">دخول</button>
+    <p id="login-error" class="login-error"></p>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">سيري</span>
+      <span class="brand-sub">لوحة التحكم</span>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-tab="products">الكتالوج</button>
+      <button class="nav-btn" data-tab="orders">الطلبيات</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="tab-products" class="tab">
+      <div class="tab-header">
+        <h2>الموديلات</h2>
+        <button id="new-product-btn" class="primary-btn">+ موديل جديد</button>
+      </div>
+      <div id="products-grid" class="products-grid"></div>
+    </section>
+
+    <section id="tab-orders" class="tab hidden">
+      <div class="tab-header">
+        <h2>الطلبيات</h2>
+      </div>
+      <div id="orders-list" class="orders-list"></div>
+    </section>
+  </main>
+</div>
+
+<div id="product-modal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modal-title">موديل جديد</h3>
+      <button id="modal-close" class="icon-btn">✕</button>
+    </div>
+    <form id="product-form">
+      <input type="hidden" id="product-id" />
+      <label>اسم الموديل
+        <input type="text" id="f-name" required placeholder="مثال: قميص شرعي أبيض كلاسيك" />
+      </label>
+      <div class="row">
+        <label>النوع
+          <select id="f-type">
+            <option value="قميص">قميص</option>
+            <option value="سروال نصف ساق">سروال نصف ساق</option>
+            <option value="طقم">طقم (قميص + سروال)</option>
+          </select>
+        </label>
+        <label>عدد حبات السيري
+          <input type="number" id="f-pieces" value="12" required />
+        </label>
+      </div>
+      <div class="row">
+        <label>السعر العادي للسيري (دج)
+          <input type="number" id="f-price" required />
+        </label>
+        <label>أقل سعر للتفاوض (دج)
+          <input type="number" id="f-floor" required />
+        </label>
+      </div>
+      <div class="row">
+        <label>المقاسات
+          <input type="text" id="f-sizes" placeholder="مثال: من 39 إلى 46" />
+        </label>
+        <label>الألوان
+          <input type="text" id="f-colors" placeholder="مثال: أبيض، كحلي، رمادي" />
+        </label>
+      </div>
+      <label>ملاحظات إضافية (يقراها البوت)
+        <textarea id="f-notes" rows="2" placeholder="مثال: قماش صيفي خفيف، يفصل باش يبان أنيق"></textarea>
+      </label>
+      <label class="photo-label">صورة الموديل
+        <input type="file" id="f-photo" accept="image/*" />
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="f-available" checked />
+        متوفر حالياً
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="delete-product-btn" class="danger-btn hidden">حذف</button>
+        <button type="submit" class="primary-btn">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
